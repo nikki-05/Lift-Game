@@ -1,40 +1,47 @@
-//import your package here 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Building {
-  private final int NO_Of_LIFTS= 3;
-  private List<Lift> list ;
+    private int minFloor = 0;
+    private int maxFloor = 10;
+    private Lift lift;
+    private Scanner sc = new Scanner(System.in);
 
     public Building() {
-        list = new ArrayList<>();
-        System.out.println("^ _ ^ ");
-        for (int i = 0; i < NO_Of_LIFTS; i++) {
-            list.add(new Lift(0)); //A is on 0th/Ground Floor
-            list.add(new Lift(4)); //B is on 4th floor
-            list.add(new Lift(7)); //C is on 7th floor
-
-        }
+        this.lift = new Lift();
     }
 
-        public Lift getNearestLift(int currentFloor){
-            Lift near = list.get(0);
-            int mini = near.distanceTo(currentFloor);
+    public void setup() {
+        System.out.println("\u2699 Default floor range is " + minFloor + " to " + maxFloor);
+        System.out.println("\uD83D\uDD04 You can change it later in the Admin Panel.");
+    }
 
-            for (Lift lift : list) {
-                int distance = lift.distanceTo(currentFloor);
-                if (distance < mini) {
-                    near = lift;
-                    mini = distance;
-                }
-            }
-            return near;
-        }
+    public boolean isValidFloor(int floor) {
+        return floor >= minFloor && floor <= maxFloor;
+    }
 
-        public void requestLift(int currentFloor, int destinationFloor) throws InterruptedException {
-            Lift nearestLift = getNearestLift(currentFloor);
-            System.out.println("Nearest lift is at floor " + nearestLift.getCurrentfloor());
-            nearestLift.move(currentFloor);
-            nearestLift.move(destinationFloor);
+    public void setFloorRange() {
+        System.out.print("\nEnter new minimum floor: ");
+        minFloor = sc.nextInt();
+        System.out.print("Enter new maximum floor: ");
+        maxFloor = sc.nextInt();
+        System.out.println("\u2705 Floor range updated: " + minFloor + " to " + maxFloor);
+    }
+
+    public void setLiftSpeed() {
+        System.out.print("\nEnter new lift speed in ms per floor (e.g., 500): ");
+        int newSpeed = sc.nextInt();
+        lift.setSpeed(newSpeed);
+    }
+
+    public int getMinFloor() {
+        return minFloor;
+    }
+
+    public int getMaxFloor() {
+        return maxFloor;
+    }
+
+    public Lift getLift() {
+        return lift;
     }
 }

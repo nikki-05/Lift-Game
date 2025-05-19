@@ -1,60 +1,42 @@
-//your package here 
-import java.util.*;
-import java.util.concurrent.TimeUnit;
-
 public class Lift {
-    private int currentfloor;
-    private boolean isMoving;
+    private int currentFloor = 0;
+    private int speed = 1000; 
 
-    public Lift(int currentfloor) {
-        this.currentfloor = currentfloor;
-        this.isMoving = isMoving;
-    }
-
-    public int getCurrentfloor() {
-        return currentfloor;
-    }
-
-    public void setCurrentfloor(int currentfloor) {
-        this.currentfloor = currentfloor;
-    }
-
-    public boolean isMoving() {
-        return isMoving;
-    }
-
-    public void setMoving(boolean moving) {
-        isMoving = moving;
-    }
-
-    List<Lift> list = new ArrayList<>();
-
-    public void move(int destination) throws InterruptedException {
-        System.out.println("Lift moving from floor " + currentfloor + " to " + destination);
-        this.isMoving = true;
-
-        // Move towards the destination floor
-        if (destination > currentfloor) {
-            for (int floor = currentfloor + 1; floor <= destination; floor++) {
-                TimeUnit.SECONDS.sleep(1);
-                System.out.println("Lift is at floor ↑" + floor );
-                this.currentfloor = floor;
-            }
-        } else {
-            for (int floor = currentfloor - 1; floor >= destination; floor--) {
-                TimeUnit.SECONDS.sleep(1);
-                System.out.println("Lift is at floor  ↓" + floor);
-                this.currentfloor = floor;
-            }
+    public void moveTo(int targetFloor) throws InterruptedException {
+        if (targetFloor == currentFloor) {
+            System.out.println("\uD83D\uDE92 Lift is already on floor " + targetFloor);
+            return;
         }
 
-        this.isMoving = false;
-        System.out.println("Lift arrived at your floor: " + currentfloor);
-        System.out.println("Have Safe Working \uD83D\uDE0A");
+        System.out.println("\n\uD83D\uDE92 Lift moving from floor " + currentFloor + " to " + targetFloor);
+
+        while (currentFloor != targetFloor) {
+            if (currentFloor < targetFloor) {
+                currentFloor++;
+            } else {
+                currentFloor--;
+            }
+            System.out.println("\u2B06 Currently at floor: " + currentFloor);
+            Thread.sleep(speed);
+        }
+        System.out.println("\u2705 Arrived at floor: " + currentFloor);
     }
 
+    public void simulateDoors() throws InterruptedException {
+        System.out.println("\n\uD83D\uDEAA Doors opening...");
+        Thread.sleep(500);
+        System.out.println("\uD83D\uDEAA Doors open. Please enter or exit.");
+        Thread.sleep(1000);
+        System.out.println("\uD83D\uDEAA Doors closing...");
+        Thread.sleep(500);
+    }
 
-        public int distanceTo(int floor) {
-            return Math.abs(currentfloor - floor);
-        }
+    public void setSpeed(int ms) {
+        this.speed = ms;
+        System.out.println("\uD83D\uDD04 Lift speed updated to " + speed + " ms per floor");
+    }
+
+    public int getCurrentFloor() {
+        return currentFloor;
+    }
 }
