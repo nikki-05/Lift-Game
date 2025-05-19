@@ -23,10 +23,10 @@ Lift-Game-main/
 ├── Building.java
 ├── TestLift.java
 └── README.md
-
+```
 ### 📦 Compilation & Execution
 
-```bash
+```
 //To compile all java files:
 javac *.java
 
@@ -35,3 +35,4 @@ java SmartLiftSimulatorGUI
 
 //To run test logic without GUI:
 java TestLift
+```
