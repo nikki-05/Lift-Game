@@ -15,7 +15,7 @@ A Java-based **Smart Elevator System Simulator** with graphical user interface (
 - 🧪 Test class for functionality testing and debugging.
 
 ## 📁 Project Structure
-
+```
 Lift-Game-main/
 ├── SmartLiftSimulatorGUI.java
 ├── LiftGameGUI.java
