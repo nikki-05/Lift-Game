@@ -36,3 +36,11 @@ java SmartLiftSimulatorGUI
 //To run test logic without GUI:
 java TestLift
 ```
+
+# 📷 Screenshot of Current GUI
+
+Here's a quick look at the current lift simulation in action:
+
+<p align="center">
+  <img src="/Ss.png" alt="" />
+</p>
